@@ -1,2 +1,2 @@
 # DecOre
-A clone for MiniClip Ore.
+A clone of  MiniClip Ore.
