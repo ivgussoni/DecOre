@@ -1,0 +1,18 @@
+﻿  Button.cpp
+  GameBlock.cpp
+  GameEngine.cpp
+  GameGrid.cpp
+  GameOver.cpp
+  GameScene.cpp
+  GameStats.cpp
+  GameWindow.cpp
+  Main.cpp
+  MainMenu.cpp
+  Scene.cpp
+  Sound.cpp
+  Sprite.cpp
+  Text.cpp
+  Generating Code...
+SDL2main.lib(SDL_windows_main.obj) : error LNK2005: _main already defined in Main.obj
+SDL2main.lib(SDL_windows_main.obj) : error LNK2019: unresolved external symbol _SDL_main referenced in function _main_getcmdline
+E:\DECA\DecOre\bin\Debug\x86\DecOre.exe : fatal error LNK1120: 1 unresolved externals

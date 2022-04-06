@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="DEFINES">
+      <UniqueIdentifier>{6708f32d-c19e-4613-86eb-e303dacb8335}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{e071bd73-85bb-4c9b-8b5a-fb7ca5cf6861}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ENGINE">
+      <UniqueIdentifier>{409c2b3d-5de7-40a2-aebb-49aa1201472a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_MAIN">
+      <UniqueIdentifier>{4798d906-2a59-4232-bcb3-af5951aa7665}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Button.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>ENGINE</Filter>
+    </ClCompile>
+    <ClCompile Include="GameScene.cpp">
+      <Filter>ENGINE</Filter>
+    </ClCompile>
+    <ClCompile Include="GameWindow.cpp">
+      <Filter>ENGINE</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>_MAIN</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="GameGrid.cpp">
+      <Filter>ENGINE</Filter>
+    </ClCompile>
+    <ClCompile Include="GameBlock.cpp">
+      <Filter>ENGINE</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>ENGINE</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStats.cpp">
+      <Filter>ENGINE</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Local_DEFINES.h">
+      <Filter>DEFINES</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h">
+      <Filter>ENGINE</Filter>
+    </ClInclude>
+    <ClInclude Include="GameScene.h">
+      <Filter>ENGINE</Filter>
+    </ClInclude>
+    <ClInclude Include="GameWindow.h">
+      <Filter>ENGINE</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameGrid.h">
+      <Filter>ENGINE</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBlock.h">
+      <Filter>ENGINE</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>ENGINE</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStats.h">
+      <Filter>ENGINE</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
