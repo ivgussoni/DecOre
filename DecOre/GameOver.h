@@ -13,7 +13,7 @@ class Button;
 class GameOver
 {
 public:
-	GameOver(std::shared_ptr<GameEngine> e, int level, int score);
+	GameOver(std::shared_ptr<GameEngine> e);
 	~GameOver();
 
 	void Draw();

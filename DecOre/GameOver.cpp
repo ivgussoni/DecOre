@@ -4,13 +4,13 @@
 #include "Text.h"
 #include "Button.h"
 
-GameOver::GameOver(std::shared_ptr<GameEngine> engine, int level, int score)
+GameOver::GameOver(std::shared_ptr<GameEngine> engine)
 {
 	_engine = engine;
 
-	_backgroundImg = std::make_unique<SDL::Sprite>(_engine, "Assets/Images/gameOverMenu.png");
+	_backgroundImg = std::make_unique<SDL::Sprite>(_engine, "Data/Images/gameOverMenu.png");
 
-	_playAgainButton = std::make_unique<Button>(_engine, "Assets/Images/playAgainButton.png");
+	_playAgainButton = std::make_unique<Button>(_engine, "Data/Images/playAgainButton.png");
 	_playAgainButton->SetPosition(0, 394);
 	_playAgainButton->CenterHorizontally(_engine->Width());
 }

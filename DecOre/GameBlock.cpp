@@ -37,14 +37,18 @@ void GameBlock::Update()
 
 	switch (_animOrientation)
 	{
-	case AnimationOrientation::Horizontal:
-		animationSpeed = 200.f;
-		break;
-	case AnimationOrientation::Vertical:
-		animationSpeed = 100.f * (_animDestY - _animOrigY);
-		break;
-	default:
-		break;
+		case AnimationOrientation::Horizontal:
+		{
+			animationSpeed = 200.f;
+			break;
+		}
+		case AnimationOrientation::Vertical:
+		{
+			animationSpeed = 100.f * (_animDestY - _animOrigY);
+			break;
+		}		
+		default:
+			break;
 	}
 
 	if (_updatePosition)
@@ -156,6 +160,7 @@ bool GameBlock::Animate(float totalTime)
 {
 	int currentTime = SDL_GetTicks();
 	bool isAnimationComplete = currentTime > _animStartTime + totalTime;
+
 	if (isAnimationComplete)
 	{
 		SetPosition(_animDestX, _animDestY);

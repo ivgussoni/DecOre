@@ -1,10 +1,10 @@
-#define SDL_MAIN_HANDLED
-#include "SDL.h"
-
 #include "GameEngine.h"
 #include "Button.h"
 
-int main()
+#define SDL_MAIN_HANDLED
+#include "SDL.h"
+
+int WinMain()
 {
 	std::shared_ptr<GameEngine> GEngine = std::make_shared<GameEngine>();
 	GEngine->Run();

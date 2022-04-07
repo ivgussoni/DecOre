@@ -47,8 +47,6 @@ public:
 	void ShiftLeft(int origX, int origY, int value, int maxShift);
 	void ShiftRight(int origX, int origY, int value, int maxShift);
 
-	void Destroy();
-
 	void ResetState();
 
 private:

@@ -3,6 +3,7 @@
 #include "Sprite.h"
 #include "GameBlock.h"
 #include "Sound.h"
+#include "GameScene.h"
 
 #include <ctime>
 
@@ -23,17 +24,17 @@ GameGrid::~GameGrid() = default;
 
 void GameGrid::LoadResources()
 {
-	_blockRedImg = std::make_shared<SDL::Sprite>(_engine, "Assets/Images/Block-red.png");
-	_blockGreenImg = std::make_shared<SDL::Sprite>(_engine, "Assets/Images/Block-green.png");
-	_blockBlueImg = std::make_shared<SDL::Sprite>(_engine, "Assets/Images/Block-blue.png");
-	_blockGreyImg = std::make_shared<SDL::Sprite>(_engine, "Assets/Images/Block-grey.png");
-	_blockOrangeImg = std::make_shared<SDL::Sprite>(_engine, "Assets/Images/Block-orange.png");
+	_blockRedImg = std::make_shared<SDL::Sprite>(_engine, "Data/Images/Block-red.png");
+	_blockGreenImg = std::make_shared<SDL::Sprite>(_engine, "Data/Images/Block-green.png");
+	_blockBlueImg = std::make_shared<SDL::Sprite>(_engine, "Data/Images/Block-blue.png");
+	_blockGreyImg = std::make_shared<SDL::Sprite>(_engine, "Data/Images/Block-grey.png");
+	_blockOrangeImg = std::make_shared<SDL::Sprite>(_engine, "Data/Images/Block-orange.png");
 
-	_gameOverSound = std::make_unique<SDL::Sound>("Assets/Sounds/gameOver.wav");
-	_levelUpSound = std::make_unique<SDL::Sound>("Assets/Sounds/levelUp.wav");
-	_destroyBlocksSound = std::make_unique<SDL::Sound>("Assets/Sounds/destroyBlocks.wav");
-	_pushSound = std::make_unique<SDL::Sound>("Assets/Sounds/push.wav");
-	_generateBoardSound = std::make_unique<SDL::Sound>("Assets/Sounds/generateBoard.wav");
+	_gameOverSound = std::make_unique<SDL::Sound>("Data/Sounds/gameOver.wav");
+	_levelUpSound = std::make_unique<SDL::Sound>("Data/Sounds/levelUp.wav");
+	_destroyBlocksSound = std::make_unique<SDL::Sound>("Data/Sounds/destroyBlocks.wav");
+	_pushSound = std::make_unique<SDL::Sound>("Data/Sounds/push.wav");
+	_generateBoardSound = std::make_unique<SDL::Sound>("Data/Sounds/generateBoard.wav");
 }
 
 void GameGrid::Update()
@@ -93,31 +94,47 @@ void GameGrid::HandleState()
 
 	switch (_currentState)
 	{
-	case GameState::Idle:
-		break;
-	case GameState::DestroyBlocks:
-		DestroyBlocks();
-		break;
-	case GameState::DropBlocks:
-		DropBlocks();
-		break;
-	case GameState::CompactBlocks:
-		CompactBlocks();
-		break;
-	case GameState::PushBlocks:
-		PushGrid();
-		break;
-	case GameState::LevelUp:
-		LevelUpGrid();
-		break;
-	case GameState::GenerateGrid:
-		GenerateGrid();
-		break;
-	case GameState::GameOver:
-		GameOver();
-		break;
-	default:
-		break;
+		case GameState::Idle:
+		{
+			break;
+		}
+		case GameState::DestroyBlocks:
+		{
+			DestroyBlocks();
+			break;
+		}
+		case GameState::DropBlocks:
+		{
+			DropBlocks();
+			break;
+		}
+		case GameState::CompactBlocks:
+		{
+			CompactBlocks();
+			break;
+		}
+		case GameState::PushBlocks:
+		{
+			PushGrid();
+			break;
+		}
+		case GameState::LevelUp:
+		{
+			LevelUpGrid();
+			break;
+		}
+		case GameState::GenerateGrid:
+		{
+			GenerateGrid();
+			break;
+		}
+		case GameState::GameOver:
+		{
+			GameOver();
+			break;
+		}
+		default:
+			break;
 	}
 
 	if (_stateQueue.size() == 0 && _currentState != GameState::GameOver)
@@ -246,6 +263,7 @@ int GameGrid::DestroyBlocks()
 {
 	int blocksDestroyed = 0;
 
+	//nested loopscare not recomended but well, the only solution that I can find right now
 	for (int i = 0; i < k_boardWidth; i++)
 	{
 		for (int j = 0; j < k_boardHeight; j++)
@@ -271,11 +289,13 @@ void GameGrid::LevelUp()
 
 void GameGrid::LevelUpGrid()
 {
+	//nested loopscare not recomended but well, the only solution that I can find right now
 	for (int i = 0; i < k_boardWidth; ++i)
 	{
 		for (int j = 0; j < k_boardHeight; ++j)
 		{
-			if (!GetBlock(i, j)->Empty) {
+			if (!GetBlock(i, j)->Empty) 
+			{
 				GetBlock(i, j)->SetUpdatePositionsCount(k_boardHeight + 2);
 				GetBlock(i, j)->Drop(k_boardHeight * 3);
 			}
@@ -292,7 +312,6 @@ void GameGrid::Push()
 
 void GameGrid::PushGrid()
 {
-	//We don't want to push outside of the grid space
 	if (!CheckEmptyColumn(0))
 	{
 		return;
@@ -308,6 +327,7 @@ void GameGrid::PushGrid()
 			{
 				MoveColumn(k - 1, k, MoveDirection::Left);
 			}
+
 			GenerateNewColumn();
 
 			if (!CheckEmptyColumn(0))
@@ -356,13 +376,15 @@ void GameGrid::DropBlocks()
 	for (int i = 0; i < k_boardWidth; i++)
 	{
 		bool dropsExist = false;
+
+		//nested loopscare not recomended but well, the only solution that I can find right now
 		for (int j = k_boardHeight - 1; j >= 0; j--)
 		{
 			if (GetBlock(i, j)->Empty)
 			{
 				for (int k = j - 1; k >= 0; k--)
 				{
-					//Calculate drops
+					//drops
 					if (!GetBlock(i, k)->Empty)
 					{
 						GetBlock(i, k)->IncrementUpdatePositionsCount();
@@ -386,11 +408,12 @@ void GameGrid::DropBlocksOfColumn(int x)
 		if (!GetBlock(x, y)->Empty)
 		{
 			int drop = GetBlock(x, y)->UpdatePositionsCount();
+
 			if (drop != 0)
 			{
 				*GetBlock(x, y + drop) = *GetBlock(x, y);
 
-				//initialize animation parameters
+				//animation parameters
 				GetBlock(x, y + drop)->Drop(k_boardHeight);
 				GetBlock(x, y)->Empty = true;
 			}
@@ -479,18 +502,28 @@ std::shared_ptr<SDL::Sprite> GameGrid::ImageForBlockType(GameBlock::BlockType ty
 {
 	switch (type)
 	{
-	case GameBlock::BlockType::Red:
-		return _blockRedImg;
-	case GameBlock::BlockType::Green:
-		return _blockGreenImg;
-	case GameBlock::BlockType::Blue:
-		return _blockBlueImg;
-	case GameBlock::BlockType::Grey:
-		return _blockGreyImg;
-	case GameBlock::BlockType::Orange:
-		return _blockOrangeImg;
-	default:
-		break;
+		case GameBlock::BlockType::Red:
+		{
+			return _blockRedImg;
+		}
+		case GameBlock::BlockType::Green:
+		{
+			return _blockGreenImg;
+		}
+		case GameBlock::BlockType::Blue:
+		{
+			return _blockBlueImg;
+		}
+		case GameBlock::BlockType::Grey:
+		{
+			return _blockGreyImg;
+		}
+		case GameBlock::BlockType::Orange:
+		{
+			return _blockOrangeImg;
+		}
+		default:
+			break;
 	}
 
 	return _blockRedImg;
@@ -500,7 +533,7 @@ bool GameGrid::IsUpdating()
 {
 	bool result = false;
 
-	//Checks if there's any block updating
+	//nested loopscare not recomended but well, the only solution that I can find right now
 	for (int i = 0; i < k_boardWidth; ++i)
 	{
 		for (int j = 0; j < k_boardHeight; ++j)

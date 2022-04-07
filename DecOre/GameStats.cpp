@@ -17,11 +17,11 @@ static const int k_levelPosY = 16;
 GameStats::GameStats(std::shared_ptr<GameEngine> engine)
 {
 	_engine = engine;
-	_levelBar = std::make_unique<SDL::Sprite>(_engine, "Assets/Images/ProgressBar.png");
+	_levelBar = std::make_unique<SDL::Sprite>(_engine, "Data/Images/ProgressBar.png");
 
-	_pushBar = std::make_unique<SDL::Sprite>(_engine, "Assets/Images/PushBar.png");
+	_pushBar = std::make_unique<SDL::Sprite>(_engine, "Data/Images/PushBar.png");
 
-	_fontUI = std::make_unique<SDL::Text>(_engine, "Assets/Fonts/pixelart.ttf", 20);
+	_fontUI = std::make_unique<SDL::Text>(_engine, "Data/Fonts/pixelart.ttf", 20);
 
 	_scoreImg = _fontUI->RenderText(std::to_string(0), { 255, 255, 255, 255 });
 	_levelImg = _fontUI->RenderText(std::to_string(1), { 255, 255, 255, 255 });

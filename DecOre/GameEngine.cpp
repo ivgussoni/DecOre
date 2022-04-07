@@ -59,16 +59,20 @@ void GameEngine::SwitchScene(SceneId sceneID)
 
 		switch (sceneID)
 		{
-		case SceneId::MainMenu:
-			_currentScene = std::make_unique<MainMenu>(shared_from_this());
-			_currentSceneId = sceneID;
-			break;
-		case SceneId::Game:
-			_currentScene = std::make_unique<GameScene>(shared_from_this());
-			_currentSceneId = sceneID;
-			break;
-		default:
-			break;
+			case SceneId::MainMenu:
+			{
+				_currentScene = std::make_unique<MainMenu>(shared_from_this());
+				_currentSceneId = sceneID;
+				break;
+			}
+			case SceneId::Game:
+			{
+				_currentScene = std::make_unique<GameScene>(shared_from_this());
+				_currentSceneId = sceneID;
+				break;
+			}
+			default:
+				break;
 		}
 	}
 }

@@ -14,13 +14,13 @@
 
 GameScene::GameScene(std::shared_ptr<GameEngine> g_engine) :Scene(g_engine)
 {
-	_backgroundImg = std::make_unique<SDL::Sprite>(g_engine, "Assets/Images/gameBackground.png");
+	_backgroundImg = std::make_unique<SDL::Sprite>(g_engine, "Data/Images/gameBackground.png");
 
-	_pushButton = std::make_unique<Button>(g_engine, "Assets/Images/pushButton.png");
+	_pushButton = std::make_unique<Button>(g_engine, "Data/Images/pushButton.png");
 	_pushButton->SetPosition(720, 560);
 
-	_backgroundMusic = std::make_unique<SDL::Sound>("Assets/Sounds/background.mp3");
-	_backgroundMusic->Play(0.3f, true);
+	_backgroundMusic = std::make_unique<SDL::Sound>("Data/Sounds/background.mp3");
+	_backgroundMusic->Play(0.1f, true);
 
 	_gameGrid = std::make_unique<GameGrid>(g_engine);
 	_stats = std::make_unique<GameStats>(g_engine);
@@ -129,7 +129,7 @@ void GameScene::ShowGameOver()
 {
 	_gameOver = true;
 	_gameOverMenu.reset();
-	_gameOverMenu = std::make_unique<GameOver>(g_engine, _level, _score);
+	_gameOverMenu = std::make_unique<GameOver>(g_engine);
 }
 
 void GameScene::MaybePushGrid()
@@ -184,18 +184,7 @@ int GameScene::ScoreToLevel()
 
 int GameScene::ScoreToLevelUp(int lvl)
 {
-	switch (lvl)
-	{
-	case 0:
-		return 0;
-		break;
-	case 1:
-		return 600;
-		break;
-	default:
-		return ((lvl + 1) * BLOCK_POINT) * (lvl - 1) * 100;
-		break;
-	}
+	return ((lvl + 1) * BLOCK_POINT) * (lvl - 1) * 100;
 }
 
 void GameScene::ResetGame()
