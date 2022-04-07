@@ -1,5 +1,5 @@
 # DecOre
-A clone of  MiniClip Ore.
+A clone of MiniClip Ore using SDL2.
 
 Just clone and compile on VS 2019 or greater and enjoy. All required files are included.
 
